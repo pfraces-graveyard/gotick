@@ -76,3 +76,4 @@ angular.module('gotick', ['chrono'])
     currentPlayer().chrono.stop();
     stopPollingChrono();
   };
+});
