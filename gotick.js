@@ -76,4 +76,12 @@ angular.module('gotick', ['chrono'])
     currentPlayer().chrono.stop();
     stopPollingChrono();
   };
+  
+  $scope.switchPlayer = function () {
+    if ($scope.playing) { currentPlayer().chrono.stop(); }
+    $scope.isBlackPlaying = !$scope.isBlackPlaying;
+    if ($scope.playing) { currentPlayer().chrono.start(); }
+  };
+  
+  init();
 });
