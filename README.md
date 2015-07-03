@@ -1,0 +1,2 @@
+# gotick
+Simple go clock
