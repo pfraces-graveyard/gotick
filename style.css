@@ -58,6 +58,7 @@ p {
   background-color: white;
   color: black;
   transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
 }
 
 .time-left {
