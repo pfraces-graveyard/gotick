@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.angularjs.org/1.4.1/angular.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="gotick.js"></script>
+    <script src="chrono.js"></script>
+  </head>
+
+  <body ng-app="gotick" ng-controller="clock">
+    <div class="settings">
+      <form>
+        <input type="number" ng-model="settings.main" name="main" />
+        <span>+</span>
+        <input type="number" ng-model="settings.periods" name="periods" />
+        <span>x</span>
+        <input type="number" ng-model="settings.period" name="period" />
+      </form>
+      
+      <button ng-if="!playing" ng-click="play()">Play</button>
+      <button ng-if="playing" ng-click="pause()">Pause</button>
+      <button ng-if="!playing" ng-click="reset()">Reset</button>
+    </div>
+    
+    <div class="clock">
+      <div ng-click="switchPlayer()" ng-class="{ current: isBlackPlaying }" class="switch">
+        <div class="player black">
+          <p class="time-left" ng-bind="clockFmt(black.elapsed)"></p>
+          <p class="periods-left" ng-bind="settings.periods - black.periods + ' x ' + settings.period"></p>
+        </div>
+      </div>
+      
+      <div ng-click="switchPlayer()" ng-class="{ current: !isBlackPlaying }" class="switch">
+        <div class="player white">
+          <p class="time-left" ng-bind="clockFmt(white.elapsed)"></p>
+          <p class="periods-left" ng-bind="settings.periods - white.periods + ' x ' + settings.period"></p>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
