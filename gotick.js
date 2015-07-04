@@ -1,7 +1,18 @@
-angular.module('gotick', ['chrono'])
+angular.module('gotick', ['device', 'chrono'])
 
-.controller('clock', function ($scope, $interval, chrono) {
+.controller('clock', function ($scope, $interval, on, chrono) {
   'use strict';
+  
+  on('menubutton', function () {
+    if ($scope.playing) {
+      pauseGame();
+      $scope.showMenu = true;
+      return;
+    }
+    
+    $scope.showMenu = false;
+    resumeGame();
+  });
   
   var currentPlayer = function () {
     return $scope[$scope.isBlackPlaying ? 'black' : 'white'];
@@ -70,41 +81,29 @@ angular.module('gotick', ['chrono'])
     }, 200);
   };
   
-  $scope.settings = {
-    main: 10, // secoonds
-    periods: 5,
-    period: 30 // seconds
-  };
-  
-  $scope.reset = init;
-  
-  $scope.msFmt = (function () {
-    var zeroPad = function (str) {
-      str = '' + str;
-      return (str.length < 2 ? '0' : '') + str;
-    };
-  
-    return function (ms) {
-      var acc = ms;
-      var miliseconds = acc % 1000;
-      acc = (acc - miliseconds) / 1000;
-      var seconds = acc % 60;
-      acc = (acc - seconds) / 60;
-      var minutes = acc % 60;
-    
-      return zeroPad(minutes) + ':' + zeroPad(seconds);
-    };
-  })();
-  
-  $scope.play = function () {
+  var resumeGame = function () {
     $scope.playing = true;
     currentPlayer().chrono.start();
     startPollingChrono();
   };
   
-  $scope.pause = pauseGame;
+  var zeroPad = function (str) {
+    str = '' + str;
+    return (str.length < 2 ? '0' : '') + str;
+  };
   
-  $scope.switchPlayer = function () {
+  var msFmt = function (ms) {
+    var acc = ms;
+    var miliseconds = acc % 1000;
+    acc = (acc - miliseconds) / 1000;
+    var seconds = acc % 60;
+    acc = (acc - seconds) / 60;
+    var minutes = acc % 60;
+  
+    return zeroPad(minutes) + ':' + zeroPad(seconds);
+  };
+  
+  var switchPlayer = function () {
     if ($scope.playing) {
       currentPlayer().chrono.stop();
       
@@ -119,6 +118,21 @@ angular.module('gotick', ['chrono'])
       currentPlayer().chrono.start();
     }
   };
+  
+  $scope.showMenu = false;
+  
+  $scope.settings = {
+    main: 10, // secoonds
+    periods: 5,
+    period: 30 // seconds
+  };
+  
+  $scope.msFmt = msFmt;
+  $scope.switchPlayer = switchPlayer;
+  
+  $scope.play = resumeGame;
+  $scope.pause = pauseGame;
+  $scope.reset = init;
   
   init();
 });
