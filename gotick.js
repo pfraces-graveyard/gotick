@@ -3,6 +3,10 @@ angular.module('gotick', ['device', 'chrono'])
 .controller('clock', function ($scope, $interval, on, chrono) {
   'use strict';
   
+  var beep = function () {
+    navigation.vibrate(200);
+  };
+  
   var currentPlayer = function () {
     return $scope[$scope.isBlackPlaying ? 'black' : 'white'];
   };
@@ -93,6 +97,8 @@ angular.module('gotick', ['device', 'chrono'])
       return;
     }
     
+    beep();
+    
     if ($scope.playing) {
       pauseGame();
       $scope.showMenu = true;
@@ -120,6 +126,8 @@ angular.module('gotick', ['device', 'chrono'])
   };
   
   var switchPlayer = function () {
+    beep();
+    
     if ($scope.initialMove) {
       $scope.initialMove = false;
       $scope.isBlackPlaying = !$scope.isBlackPlaying;
