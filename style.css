@@ -41,12 +41,14 @@ p {
 }
 
 .player {
-  padding-left: 0.4em;
   position: absolute;
   top: 0.4em;
   bottom: 0.4em;
   left: 0.4em;
   right: 0.4em;
+  padding-left: 0.4em;
+  -webkit-border-radius: 0.4em;
+  border-radius: 0.4em;
 }
 
 .player.black  {
@@ -59,8 +61,8 @@ p {
   top: 0.2em;
   background-color: white;
   color: black;
-  transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .time-left {
