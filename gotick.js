@@ -105,9 +105,19 @@ angular.module('gotick', ['chrono'])
   $scope.pause = pauseGame;
   
   $scope.switchPlayer = function () {
-    if ($scope.playing) { currentPlayer().chrono.stop(); }
+    if ($scope.playing) {
+      currentPlayer().chrono.stop();
+      
+      if (currentPlayer().periods) {
+        currentPlayer().chrono.reset();
+      }  
+    }
+    
     $scope.isBlackPlaying = !$scope.isBlackPlaying;
-    if ($scope.playing) { currentPlayer().chrono.start(); }
+    
+    if ($scope.playing) {
+      currentPlayer().chrono.start();
+    }
   };
   
   init();
