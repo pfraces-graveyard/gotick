@@ -12,12 +12,9 @@ angular.module('device', [])
   */
   var on = function (eventName, eventListener) {
     alert('registering event listener for: ' + eventName)
-    document.addEventListener('deviceready', function () {
-      alert('device is ready!');
-      document.addEventListener(eventName, function () {
+    document.addEventListener(eventName, function () {
         alert('event fired: ' + eventName);
         eventListener();
-      });
     });
   };
   
