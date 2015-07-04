@@ -27,7 +27,6 @@ body {
   background-color: #fc0;
   font-family: "Arial";
   font-weight: bold;
-  min-height: 480px;
 }
 
 .clock {
@@ -114,6 +113,7 @@ body {
 }
 
 .backdrop {
+  min-height: 480px;
   position: absolute;
   top: 0;
   bottom: 0;
