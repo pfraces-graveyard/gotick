@@ -147,4 +147,10 @@ angular.module('gotick', ['device', 'chrono'])
   
   init();
   on('menubutton', togglePause);
+  
+  on('backbutton', function () {
+    if ($scope.showMenu) {
+      togglePause();
+    }
+  });
 });
