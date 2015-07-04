@@ -47,5 +47,8 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
+    
+    <!-- 3rd party plugins -->
+    <gap:plugin name="com.badrit.backbutton" />
 
 </widget>
