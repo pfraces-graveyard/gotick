@@ -3,17 +3,6 @@ angular.module('gotick', ['device', 'chrono'])
 .controller('clock', function ($scope, $interval, on, chrono) {
   'use strict';
   
-  on('menubutton', function () {
-    if ($scope.playing) {
-      pauseGame();
-      $scope.showMenu = true;
-      return;
-    }
-    
-    $scope.showMenu = false;
-    resumeGame();
-  });
-  
   var currentPlayer = function () {
     return $scope[$scope.isBlackPlaying ? 'black' : 'white'];
   };
@@ -45,11 +34,19 @@ angular.module('gotick', ['device', 'chrono'])
   };
   
   var init = function () {
-    $scope.playing = false;
+    $scope.playing = true;
+    $scope.showMenu = false;
+    $scope.showSettings = true;
     $scope.isBlackPlaying = true;
+    $scope.initialMove = true;
     
     initPlayer('black');
     initPlayer('white');
+  };
+  
+  var newGame = function () {
+    init();
+    $scope.showSettings = false;
   };
   
   var pollingChrono = null;
@@ -60,6 +57,8 @@ angular.module('gotick', ['device', 'chrono'])
   
   var pauseGame = function () {
     $scope.playing = false;
+    if ($scope.initialMove) { return; }
+    
     currentPlayer().chrono.stop();
     stopPollingChrono();
   };
@@ -83,8 +82,21 @@ angular.module('gotick', ['device', 'chrono'])
   
   var resumeGame = function () {
     $scope.playing = true;
+    if ($scope.initialMove) { return; }
+    
     currentPlayer().chrono.start();
     startPollingChrono();
+  };
+  
+  var togglePause = function () {
+    if ($scope.playing) {
+      pauseGame();
+      $scope.showMenu = true;
+      return;
+    }
+    
+    $scope.showMenu = false;
+    resumeGame();
   };
   
   var zeroPad = function (str) {
@@ -104,22 +116,18 @@ angular.module('gotick', ['device', 'chrono'])
   };
   
   var switchPlayer = function () {
-    if ($scope.playing) {
-      currentPlayer().chrono.stop();
-      
-      if (currentPlayer().periods) {
-        currentPlayer().chrono.reset();
-      }  
+    if ($scope.initialMove) {
+      $scope.initialMove = false;
+      $scope.isBlackPlaying = !$scope.isBlackPlaying;
+      resumeGame();
+      return;
     }
     
+    currentPlayer().chrono.stop();
+    if (currentPlayer().periods) { currentPlayer().chrono.reset(); }
     $scope.isBlackPlaying = !$scope.isBlackPlaying;
-    
-    if ($scope.playing) {
-      currentPlayer().chrono.start();
-    }
+    currentPlayer().chrono.start();
   };
-  
-  $scope.showMenu = false;
   
   $scope.settings = {
     main: 10, // secoonds
@@ -129,10 +137,10 @@ angular.module('gotick', ['device', 'chrono'])
   
   $scope.msFmt = msFmt;
   $scope.switchPlayer = switchPlayer;
-  
-  $scope.play = resumeGame;
-  $scope.pause = pauseGame;
+  $scope.togglePause = togglePause;
   $scope.reset = init;
+  $scope.newGame = newGame;
   
   init();
+  on('menubutton', togglePause);
 });
