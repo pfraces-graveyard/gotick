@@ -3,10 +3,8 @@
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <script src="https://code.angularjs.org/1.4.1/angular.js"></script>
     <link rel="stylesheet" href="style.css" />
-    
-    <script src="vendor/angular.js"></script>
     <script src="gotick.js"></script>
     <script src="chrono.js"></script>
   </head>
@@ -26,18 +24,18 @@
       <button ng-if="!playing" ng-click="reset()">Reset</button>
     </div>
     
-    <div class="clock">
-      <div ng-click="switchPlayer()" ng-class="{ current: isBlackPlaying }" class="switch">
+    <div ng-click="switchPlayer()" class="clock">
+      <div ng-class="{ current: isBlackPlaying }" class="switch">
         <div class="player black">
-          <p class="time-left" ng-bind="clockFmt(black.elapsed)"></p>
-          <p class="periods-left" ng-bind="settings.periods - black.periods + ' x ' + settings.period"></p>
+          <p class="time-left" ng-bind="msFmt(black.remainingTime())"></p>
+          <p class="periods-left" ng-bind="black.remainingPeriods() + ' x ' + msFmt(settings.period * 1000)"></p>
         </div>
       </div>
       
-      <div ng-click="switchPlayer()" ng-class="{ current: !isBlackPlaying }" class="switch">
+      <div ng-class="{ current: !isBlackPlaying }" class="switch">
         <div class="player white">
-          <p class="time-left" ng-bind="clockFmt(white.elapsed)"></p>
-          <p class="periods-left" ng-bind="settings.periods - white.periods + ' x ' + settings.period"></p>
+          <p class="time-left" ng-bind="msFmt(white.remainingTime())"></p>
+          <p class="periods-left" ng-bind="white.remainingPeriods() + ' x ' + msFmt(settings.period * 1000)"></p>
         </div>
       </div>
     </div>
