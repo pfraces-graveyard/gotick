@@ -11,6 +11,7 @@ angular.module('device', [])
   };
   */
   var on = function (eventName, eventListener) {
+    alert('registering event listener for: ' + eventName)
     $document.on('deviceready', function () {
       alert('device is ready!');
       $document.on(eventName, function () {
