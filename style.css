@@ -8,7 +8,7 @@ form {
 }
 
 input {
-  width: 30px;
+  width: 2.2em;
 }
 
 p {
@@ -19,13 +19,13 @@ p {
 }
 
 .settings {
-  margin: 10px;
+  margin: 0.4em;
 }
 
 .clock {
   position: absolute;
   width: 100%;
-  top: 2.5em;
+  top: 2em;
   bottom: 0;
 }
 
@@ -41,20 +41,22 @@ p {
 }
 
 .player {
+  padding-left: 0.4em;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  padding: 10px;
+  top: 0.4em;
+  bottom: 0.4em;
+  left: 0.4em;
+  right: 0.4em;
 }
 
-.player.black {
+.player.black  {
+  bottom: 0.2em;
   background-color: black;
   color: white;
 }
 
 .player.white {
+  top: 0.2em;
   background-color: white;
   color: black;
   transform: rotate(180deg);
