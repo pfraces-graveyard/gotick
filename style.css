@@ -40,11 +40,11 @@ body {
   position: relative;
   display: block;
   width: 100%;
-  height: 20%;
+  height: 25%;
 }
 
 .switch.current {
-  height: 80%;
+  height: 75%;
 }
 
 .box {
