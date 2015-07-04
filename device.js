@@ -8,19 +8,10 @@
     on = document.addEventListener.bind(document);
   });
     
-  angular.module('device', []).factory('on', function () {
-    
-    /*
-    var on = function (eventName, eventListener) {
-      $document.on('deviceready', function () {
-        $document.on(eventName, eventListener);
-      });
-    };
-    */
-    var on = function (eventName, eventListener) {
+  angular.module('device', [])
+  .factory('on', function () {
+    return function (eventName, eventListener) {
       on(eventName, eventListener);
     };
-    
-    return on;
   });
 })();
