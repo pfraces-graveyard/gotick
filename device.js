@@ -5,11 +5,7 @@ angular.module('device', [])
   
   var on = function (eventName, eventListener) {
     $document.on('deviceready', function () {
-      alert('device ready');
-      $document.on(eventName, function () {
-        alert(eventName);
-        eventListener();
-      });
+      $document.on(eventName, eventListener);
     });
   };
   
