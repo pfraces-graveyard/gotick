@@ -151,6 +151,9 @@ angular.module('gotick', ['device', 'chrono'])
   on('backbutton', function () {
     if ($scope.showMenu) {
       togglePause();
+      return;
     }
+    
+    navigator.app.exitApp();
   });
 });
