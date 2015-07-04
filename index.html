@@ -6,6 +6,7 @@
     <script src="https://code.angularjs.org/1.4.1/angular.js"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="gotick.js"></script>
+    <script src="device.js"></script>
     <script src="chrono.js"></script>
   </head>
 
@@ -39,6 +40,8 @@
         </div>
       </div>
     </div>
+    
+    <div ng-if="showMenu" ng-include="'menu.html'" class="menu"></div>
   </body>
 
 </html>
