@@ -28,7 +28,8 @@ angular.module('chrono', [])
     };
     
     var elapsed = function () {
-      return accrued + elapsedSince(start)
+      if (!start) { return accrued; }
+      return accrued + elapsedSince(start);
     };
     
     return {
