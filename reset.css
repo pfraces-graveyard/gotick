@@ -1,0 +1,16 @@
+body, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+li {
+  list-style: none;
+}
+
+input[type=number] {
+  text-align: right;
+}
