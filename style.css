@@ -27,6 +27,7 @@ body {
   background-color: #fc0;
   font-family: "Arial";
   font-weight: bold;
+  min-height: 480px;
 }
 
 .clock {
