@@ -1,17 +1,13 @@
-(function () {
+angular.module('device', [])
+
+.factory('on', function ($document) {
   'use strict';
   
-  var on = null;
+  var on = function (eventName, eventListener) {
+    $document.on('deviceready', function () {
+      $document.on(eventName, eventListener);
+    });
+  };
   
-  document.addEventListener('deviceready', function () {
-    alert('device ready');
-    on = document.addEventListener.bind(document);
-  });
-    
-  angular.module('device', [])
-  .factory('on', function () {
-    return function (eventName, eventListener) {
-      on(eventName, eventListener);
-    };
-  });
-})();
+  return on;
+});
