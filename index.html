@@ -25,17 +25,17 @@
     </div>
     
     <div ng-click="switchPlayer()" class="clock">
+      
+      <div ng-class="{ current: !isBlackPlaying }" class="switch">
+        <div class="player white rotate">
+          <p class="time-left" ng-bind="msFmt(white.remainingTime())"></p>
+          <p class="periods-left" ng-bind="white.remainingPeriods() + ' x ' + msFmt(settings.period * 1000)"></p>
+        </div>
+      </div>
       <div ng-class="{ current: isBlackPlaying }" class="switch">
         <div class="player black">
           <p class="time-left" ng-bind="msFmt(black.remainingTime())"></p>
           <p class="periods-left" ng-bind="black.remainingPeriods() + ' x ' + msFmt(settings.period * 1000)"></p>
-        </div>
-      </div>
-      
-      <div ng-class="{ current: !isBlackPlaying }" class="switch">
-        <div class="player white">
-          <p class="time-left" ng-bind="msFmt(white.remainingTime())"></p>
-          <p class="periods-left" ng-bind="white.remainingPeriods() + ' x ' + msFmt(settings.period * 1000)"></p>
         </div>
       </div>
     </div>
