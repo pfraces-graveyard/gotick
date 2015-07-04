@@ -154,6 +154,11 @@ angular.module('gotick', ['device', 'chrono'])
       return;
     }
     
-    navigator.app.exitApp();
+    if (!$scope.playing || $scope.initialMove) {
+      navigator.app.exitApp();
+      return;
+    }
+    
+    navigator.Backbutton.goHome();
   });
 });
