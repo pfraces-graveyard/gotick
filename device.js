@@ -1,28 +1,26 @@
-angular.module('device', [])
-
-.factory('on', function () {
+(function () {
   'use strict';
   
-  /*
-  var on = function (eventName, eventListener) {
-    $document.on('deviceready', function () {
-      $document.on(eventName, eventListener);
-    });
-  };
-  */
-  var on = function (eventName, eventListener) {
-    alert('registering event listener for: ' + eventName);
-    document.addEventListener('DOMContentLoaded', function () {
-      alert('dom ready');
-      document.addEventListener('deviceready', function () {
-        alert('device ready');
-        document.addEventListener(eventName, function () {
-            alert('event fired: ' + eventName);
-            eventListener();
-        });
-      });
-    });
-  };
+  var on = null;
   
-  return on;
-});
+  document.addEventListener('deviceready', function () {
+    alert('device ready');
+    on = document.addEventListener.bind(document);
+  });
+    
+  angular.module('device', []).factory('on', function () {
+    
+    /*
+    var on = function (eventName, eventListener) {
+      $document.on('deviceready', function () {
+        $document.on(eventName, eventListener);
+      });
+    };
+    */
+    var on = function (eventName, eventListener) {
+      on(eventName, eventListener);
+    };
+    
+    return on;
+  });
+})();
