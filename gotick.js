@@ -89,6 +89,10 @@ angular.module('gotick', ['device', 'chrono'])
   };
   
   var togglePause = function () {
+    if ($scope.showSettings) {
+      return;
+    }
+    
     if ($scope.playing) {
       pauseGame();
       $scope.showMenu = true;
