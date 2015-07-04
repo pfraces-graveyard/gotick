@@ -25,7 +25,7 @@ p {
 .clock {
   position: absolute;
   width: 100%;
-  top: 40px;
+  top: 2.5em;
   bottom: 0;
 }
 
@@ -58,7 +58,6 @@ p {
   background-color: white;
   color: black;
   transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
 }
 
 .time-left {
