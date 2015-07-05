@@ -83,6 +83,10 @@ body {
   font-size: 3em;
 }
 
+.time-left.warning {
+  color: red;
+}
+
 .periods-left {
   font-size: 1.5em;
 }
