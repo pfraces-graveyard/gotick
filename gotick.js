@@ -3,6 +3,14 @@ angular.module('gotick', ['device', 'chrono'])
 .controller('clock', function ($scope, $interval, on, chrono) {
   'use strict';
   
+  var exit = function () {
+    navigator.app.exitApp();
+  };
+
+  var background = function () {
+    navigator.Backbutton.goHome();
+  };
+
   var beep = function () {
     navigator.vibrate(100);
   };
@@ -152,6 +160,7 @@ angular.module('gotick', ['device', 'chrono'])
   $scope.togglePause = togglePause;
   $scope.reset = init;
   $scope.newGame = newGame;
+  $scope.exit = exit;
   
   init();
   on('menubutton', togglePause);
@@ -163,10 +172,10 @@ angular.module('gotick', ['device', 'chrono'])
     }
     
     if (!$scope.playing || $scope.initialMove) {
-      navigator.app.exitApp();
+      exit();
       return;
     }
     
-    navigator.Backbutton.goHome();
+    background();
   });
 });
