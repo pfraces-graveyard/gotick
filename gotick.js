@@ -46,6 +46,7 @@ angular.module('gotick', ['device', 'chrono'])
   };
   
   var init = function () {
+    $scope.gameOver = false;
     $scope.playing = true;
     $scope.showMenu = false;
     $scope.showSettings = true;
@@ -81,6 +82,7 @@ angular.module('gotick', ['device', 'chrono'])
       
       if (player.remainingTime() <= 0) {
         if (!player.remainingPeriods()) {
+          $scope.gameOver = true;
           pauseGame();
           return;
         }
@@ -94,6 +96,8 @@ angular.module('gotick', ['device', 'chrono'])
   };
   
   var resumeGame = function () {
+    if ($scope.gameOver) { return; }
+
     $scope.playing = true;
     if ($scope.initialMove) { return; }
     
@@ -106,6 +110,11 @@ angular.module('gotick', ['device', 'chrono'])
       return;
     }
     
+    if ($scope.) {
+      $scope.showMenu = true;
+      return;
+    }
+
     if (!$scope.initialMove) { beep(); }
     
     if ($scope.playing) {
@@ -158,7 +167,6 @@ angular.module('gotick', ['device', 'chrono'])
   
   $scope.msFmt = msFmt;
   $scope.switchPlayer = switchPlayer;
-  $scope.togglePause = togglePause;
   $scope.reset = init;
   $scope.newGame = newGame;
   $scope.exit = exit;
