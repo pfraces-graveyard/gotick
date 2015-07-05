@@ -4,7 +4,7 @@ angular.module('gotick', ['device', 'chrono'])
   'use strict';
   
   var beep = function () {
-    navigator.vibrate(200);
+    navigator.vibrate(100);
   };
   
   var currentPlayer = function () {
