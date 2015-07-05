@@ -144,6 +144,7 @@ angular.module('gotick', ['device', 'chrono'])
   };
   
   var switchPlayer = function () {
+    if ($scope.gameOver) { return; }
     beep();
     
     if ($scope.initialMove) {
