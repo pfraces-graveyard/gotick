@@ -106,7 +106,7 @@ angular.module('gotick', ['device', 'chrono'])
       return;
     }
     
-    beep();
+    if (!$scope.initialMove) { beep(); }
     
     if ($scope.playing) {
       pauseGame();
