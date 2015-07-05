@@ -110,7 +110,7 @@ angular.module('gotick', ['device', 'chrono'])
       return;
     }
     
-    if ($scope.) {
+    if ($scope.gameOver) {
       $scope.showMenu = true;
       return;
     }
