@@ -88,6 +88,7 @@ angular.module('gotick', ['device', 'chrono'])
         player.periods += 1;
         player.chrono.reset();
         player.chrono.start();
+        beep();
       }
     }, 200);
   };
