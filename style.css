@@ -122,9 +122,7 @@ body {
 }
 
 .pause {
-  background-color: white;
-  -webkit-mask-image: url(pause.svg);
-  mask-image: url(pause.svg);
+  display: block;
   width: 128px;
   height: 128px;
   margin: 5em auto;
