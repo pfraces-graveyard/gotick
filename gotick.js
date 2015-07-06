@@ -1,4 +1,4 @@
-angular.module('gotick', ['device', 'chrono'])
+angular.module('gotick', ['directives', 'device', 'chrono'])
 
 .controller('clock', function ($scope, $interval, on, chrono) {
   'use strict';
