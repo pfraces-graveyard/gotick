@@ -6,8 +6,7 @@ angular.module('touch', [])
   var link = function (scope, element, attr) {
     var expr = $parse(attr.touchStart);
 
-    element.on('touchstart mousedown', function (event) {
-      alert('touchstart or mousedown');
+    element.on('touchstart', function (event) {
       scope.$apply(function () {
         expr(scope, { $event: event });
       });
