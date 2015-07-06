@@ -9,6 +9,7 @@
     
     <script src="cordova.js"></script>
     <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-touch.js"></script>
     
     <script src="gotick.js"></script>
     <script src="device.js"></script>
@@ -16,7 +17,7 @@
   </head>
 
   <body ng-app="gotick" ng-controller="clock">
-    <div ng-mousedown="switchPlayer()" class="clock">
+    <div ng-click="switchPlayer()" class="clock">
       
       <div ng-class="{ current: !isBlackPlaying }" class="switch">
         <div class="box player white rotate">
