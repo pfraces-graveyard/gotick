@@ -17,7 +17,7 @@
     </author>
 
     <icon src="icon.png" />
-    <gap:splash src="splash.png" />
+    <gap:splash src="splash.9.png" />
 
     <preference name="permissions" value="none"/>
 
