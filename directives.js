@@ -1,3 +1,3 @@
-angular.module('directives'. [
+angular.module('directives', [
   'touch'
 ]);
