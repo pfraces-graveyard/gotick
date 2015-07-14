@@ -1,3 +1,4 @@
 angular.module('directives', [
-  'touch'
+  'touch',
+  'autoselect'
 ]);

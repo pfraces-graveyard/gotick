@@ -1,23 +1,27 @@
 <div class="settings box white">
   <h1>Game Settings</h1>
-  
+
   <form>
     <table>
+
       <tr>
-        <td>Main duration (minutes)</td>
-        <td><input type="number" ng-model="settings.main" name="main" /></td>
+        <td><label for="main">Main duration (minutes)</label></td>
+        <td><input type="number" ng-model="settings.main" autoselect name="main" id="main" /></td>
       </tr>
+
       <tr>
-        <td>Number of periods</td>
-        <td><input type="number" ng-model="settings.periods" name="periods" /></td>
+        <td><label for="periods">Number of periods</label></td>
+        <td><input type="number" ng-model="settings.periods" autoselect name="periods" id="periods" /></td>
       </tr>
+
       <tr>
-        <td>Period duration (seconds)</td>
-        <td><input type="number" ng-model="settings.period" name="period" /></td>
+        <td><label for="period">Period duration (seconds)</label></td>
+        <td><input type="number" ng-model="settings.period" autoselect name="period" id="period" /></td>
       </tr>
+
     </table>
   </form>
-  
+
   <div class="btn" ng-click="newGame()">
     <div class="box blue">
       <div class="centered">Start</div>
