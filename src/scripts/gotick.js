@@ -11,8 +11,9 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
     navigator.Backbutton.goHome();
   };
 
-  var beep = function (ms) {
-    navigator.vibrate(ms || 100);
+  var beep = function () {
+    //navigator.vibrate(ms || 100);
+    navigator.notification.beep();
   };
   
   var currentPlayer = function () {
@@ -84,7 +85,6 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
         if (!player.remainingPeriods()) {
           $scope.gameOver = true;
           pauseGame();
-          beep(500);
           return;
         }
         
