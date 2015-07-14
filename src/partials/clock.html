@@ -2,14 +2,14 @@
   
   <div ng-class="{ current: !isBlackPlaying }" class="switch">
     <div class="box player white rotate">
-      <p class="time-left" ng-bind="msFmt(white.remainingTime())" ng-class="{ warning: white.remainingTime() <= 10000 }"></p>
+      <p class="time-left" ng-bind="white.remainingTime()" ng-class="{ warning: white.remainingMiliseconds() <= 10000 }"></p>
       <p class="periods-left" ng-if="white.remainingPeriods()" ng-bind="white.remainingPeriods() + ' x ' + settings.period + 's'"></p>
     </div>
   </div>
 
   <div ng-class="{ current: isBlackPlaying }" class="switch">
     <div class="box player black">
-      <p class="time-left" ng-bind="msFmt(black.remainingTime())" ng-class="{ warning: black.remainingTime() <= 10000 }"></p>
+      <p class="time-left" ng-bind="black.remainingTime()" ng-class="{ warning: black.remainingMiliseconds() <= 10000 }"></p>
       <p class="periods-left" ng-if="black.remainingPeriods()" ng-bind="black.remainingPeriods() + ' x ' + settings.period + 's'"></p>
     </div>
   </div>

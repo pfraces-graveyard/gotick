@@ -11,16 +11,35 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
     navigator.Backbutton.goHome();
   };
 
+  var vibrate = function () {
+    navigator.vibrate(1);
+  };
+
   var beep = function () {
-    //navigator.vibrate(ms || 100);
     navigator.notification.beep();
+  };
+  
+  var zeroPad = function (str) {
+    str = '' + str;
+    return (str.length < 2 ? '0' : '') + str;
+  };
+  
+  var msFmt = function (ms) {
+    var acc = ms;
+    var miliseconds = acc % 1000;
+    acc = (acc - miliseconds) / 1000;
+    var seconds = acc % 60;
+    acc = (acc - seconds) / 60;
+    var minutes = acc % 60;
+  
+    return zeroPad(minutes) + ':' + zeroPad(seconds);
   };
   
   var currentPlayer = function () {
     return $scope[$scope.isBlackPlaying ? 'black' : 'white'];
   };
   
-  var remainingTimeFn = function (player) {
+  var remainingMilisecondsFn = function (player) {
     return function () {
       var mainTime = $scope.settings.main * 60 * 1000;
       var periodTime = $scope.settings.period * 1000;
@@ -42,8 +61,18 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
       chrono: chrono()
     };
     
-    player.remainingTime = remainingTimeFn(player);
+    player.remainingMiliseconds = remainingMilisecondsFn(player);
     player.remainingPeriods = remainingPeriodsFn(player);
+
+    player.remainingTime = function () {
+      return msFmt(player.remainingMiliseconds());
+    };
+
+    player.$watch(player.remainingTime, function () {
+      if (player.remainingMiliseconds() < 10000) {
+        beep();
+      }
+    });
   };
   
   var init = function () {
@@ -91,7 +120,6 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
         player.periods += 1;
         player.chrono.reset();
         player.chrono.start();
-        beep();
       }
     }, 200);
   };
@@ -112,8 +140,6 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
     $scope.showMenu = !$scope.showMenu;
     if ($scope.gameOver) { return; }
 
-    if (!$scope.initialMove) { beep(); }
-    
     if ($scope.playing) {
       pauseGame();
       return;
@@ -122,25 +148,9 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
     resumeGame();
   };
   
-  var zeroPad = function (str) {
-    str = '' + str;
-    return (str.length < 2 ? '0' : '') + str;
-  };
-  
-  var msFmt = function (ms) {
-    var acc = ms;
-    var miliseconds = acc % 1000;
-    acc = (acc - miliseconds) / 1000;
-    var seconds = acc % 60;
-    acc = (acc - seconds) / 60;
-    var minutes = acc % 60;
-  
-    return zeroPad(minutes) + ':' + zeroPad(seconds);
-  };
-  
   var switchPlayer = function () {
     if ($scope.gameOver) { return; }
-    beep();
+    vibrate();
     
     if ($scope.initialMove) {
       $scope.initialMove = false;
@@ -168,6 +178,7 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
   $scope.exit = exit;
   
   init();
+
   on('menubutton', togglePause);
   
   on('backbutton', function () {
