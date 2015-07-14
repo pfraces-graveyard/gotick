@@ -68,7 +68,7 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
       return msFmt(player.remainingMiliseconds());
     };
 
-    player.$watch(player.remainingTime, function () {
+    $scope.$watch(player.remainingTime, function () {
       if (player.remainingMiliseconds() < 10000) {
         beep();
       }
@@ -110,7 +110,7 @@ angular.module('gotick', ['directives', 'device', 'chrono'])
     pollingChrono = $interval(function () {
       var player = currentPlayer();
       
-      if (player.remainingTime() <= 0) {
+      if (player.remainingMiliseconds() <= 0) {
         if (!player.remainingPeriods()) {
           $scope.gameOver = true;
           pauseGame();
