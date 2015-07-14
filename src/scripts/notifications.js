@@ -21,7 +21,7 @@ angular.module('notifications', ['device'])
   'use strict';
   
   var vibrate = function () {
-    navigator.vibrate(1);
+    navigator.vibrate(50);
   };
   
   return vibrate;
