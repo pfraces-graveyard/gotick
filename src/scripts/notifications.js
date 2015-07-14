@@ -6,7 +6,7 @@ angular.module('notifications', ['device'])
   var snd = null;
   
   onReady(function () {
-    snd = new Media('sounds/beep.mp3');
+    snd = new Media('/android_asset/www/sounds/beep.mp3');
   });
     
   var beep = function () {
