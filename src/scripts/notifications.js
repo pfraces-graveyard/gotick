@@ -1,6 +1,6 @@
-angular.module('notifications', [])
+angular.module('notifications', ['device'])
 
-.factory('beep', function () {
+.factory('beep', function (on) {
   'use strict';
   
   var snd = null;
