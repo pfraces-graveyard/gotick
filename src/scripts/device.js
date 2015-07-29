@@ -12,12 +12,14 @@ angular.module('device', [])
   return onReady;
 })
 
-.factory('on', function (onReady) {
+.factory('on', function ($document, $rootScope) {
   'use strict';
   
   var on = function (eventName, eventListener) {
-    onReady(function () {
-      $document.on(eventName, eventListener);
+    $document.on('deviceready', function () {
+      $document.on(eventName, function () {
+        $rootScope.$apply(eventListener);
+      });
     });
   };
   
