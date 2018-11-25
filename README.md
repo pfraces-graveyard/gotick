@@ -1,7 +1,7 @@
 GoTick
 ======
 
-Simple clock to play Go
+Simple clock to play Go (Android App)
 
 Download `.apk`
 ---------------
